@@ -24,6 +24,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://saadshafique.dev"
+  ),
   title: "Muhammad Saad Shafique | Android App Developer",
   description:
     "Muhammad Saad Shafique — Android App Developer with 3+ years of experience building and deploying high-performance mobile applications using Kotlin, Jetpack Compose, MVVM, Clean Architecture, Firebase, and Google Maps SDK.",
@@ -32,6 +35,12 @@ export const metadata: Metadata = {
     description:
       "Android App Developer specialized in Kotlin, Jetpack Compose, Clean Architecture, MVVM, Coroutines, Room DB, Firebase, and Google Play Store apps.",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Muhammad Saad Shafique | Android App Developer",
+    description:
+      "Android App Developer specialized in Kotlin, Jetpack Compose, Clean Architecture, MVVM, Coroutines, Room DB, Firebase, and Google Play Store apps.",
   },
 };
 
