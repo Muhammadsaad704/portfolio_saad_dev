@@ -4,7 +4,7 @@ import "./globals.css";
 
 const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["600", "700", "800", "900"],
+  weight: ["700", "800", "900"],
   variable: "--font-disp",
   display: "swap",
 });

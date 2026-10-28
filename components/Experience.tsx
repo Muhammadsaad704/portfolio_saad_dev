@@ -19,9 +19,9 @@ export const Experience: React.FC = () => {
         <h2>Experience</h2>
         <span className="sec-tag">01 / WHERE I&apos;VE WORKED</span>
       </div>
-      <div style={{ border: "1px solid var(--line)", borderBottom: 0 }}>
+      <div>
         {portfolioData.experiences.map((xp, index) => (
-          <article key={index} data-rv className="xp">
+          <article key={index} data-rv className={xp.isCurrent ? "xp xp-current spot" : "xp spot"}>
             <div className="when">
               {xp.period}
               <br />

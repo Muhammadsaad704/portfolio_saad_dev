@@ -17,6 +17,7 @@ export const Marquee: React.FC = () => {
   return (
     <div
       aria-hidden="true"
+      className="mq-wrap"
       style={{
         borderTop: "1px solid var(--line)",
         borderBottom: "1px solid var(--line)",

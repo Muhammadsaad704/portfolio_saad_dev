@@ -58,7 +58,7 @@ export const Stats: React.FC = () => {
         }}
       >
         {portfolioData.stats.map((stat, idx) => (
-          <div key={idx} className="stat">
+          <div key={idx} className="stat spot">
             <div className="n">
               <span data-count={stat.value}>0</span>
               <span

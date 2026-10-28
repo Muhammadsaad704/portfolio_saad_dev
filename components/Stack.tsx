@@ -16,7 +16,7 @@ export const Stack: React.FC = () => {
         }}
       >
         {portfolioData.stack.map((item, idx) => (
-          <div key={idx} data-rv className="stack-row">
+          <div key={idx} data-rv data-rvd={idx % 2} className="stack-row">
             <span className="k">{item.category}</span>
             <span
               className="v"

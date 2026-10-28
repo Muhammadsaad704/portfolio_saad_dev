@@ -11,7 +11,7 @@ export const Credentials: React.FC = () => {
           gap: "22px",
         }}
       >
-        <div data-rv className="cred">
+        <div data-rv className="cred spot">
           <div className="h">CORE SPECIALIZATIONS</div>
           {portfolioData.certifications.map((cert, idx) => (
             <div key={idx} className="row">
@@ -34,7 +34,7 @@ export const Credentials: React.FC = () => {
           ))}
         </div>
 
-        <div data-rv data-rvd="1" className="cred">
+        <div data-rv data-rvd="1" className="cred spot">
           <div className="h">EDUCATION &amp; LANGUAGES</div>
           {portfolioData.education.map((edu, idx) => (
             <div key={idx} className="row">

@@ -15,15 +15,18 @@ export const Projects: React.FC = () => {
           gap: "24px",
         }}
       >
-        {portfolioData.projects.map((proj) => (
-          <div key={proj.id} data-rv className="proj">
+        {portfolioData.projects.map((proj, idx) => (
+          <div key={proj.id} data-rv data-rvd={idx % 3} className="proj spot">
             <div className="num">{proj.id}</div>
             <div
               style={{
                 display: "flex",
-                justifyContent: "space-between",
+                justifyContent: "flex-start",
                 alignItems: "center",
+                flexWrap: "wrap",
+                gap: "10px",
                 marginBottom: "14px",
+                paddingRight: "72px",
               }}
             >
               <span className="eyebrow">{proj.eyebrow}</span>
@@ -51,6 +54,7 @@ export const Projects: React.FC = () => {
                   href={proj.playStoreUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="card-link"
                   style={{ color: "inherit", textDecoration: "none" }}
                 >
                   {proj.title}
@@ -80,7 +84,10 @@ export const Projects: React.FC = () => {
                     href={proj.playStoreUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    tabIndex={-1}
                     style={{
+                      position: "relative",
+                      zIndex: 2,
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "6px",

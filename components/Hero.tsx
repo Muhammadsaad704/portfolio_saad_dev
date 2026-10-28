@@ -1,9 +1,10 @@
-"use client";
-
 import React from "react";
+import Image from "next/image";
 import { portfolioData } from "@/data/portfolio";
 import { ParticleGrid } from "./ParticleGrid";
 import { Terminal } from "./Terminal";
+
+const preWords = portfolioData.headlinePre.split(" ");
 
 export const Hero: React.FC = () => {
   return (
@@ -27,7 +28,6 @@ export const Hero: React.FC = () => {
             borderRadius: "999px",
             background: "rgba(79, 182, 255, 0.08)",
             border: "1px solid rgba(79, 182, 255, 0.2)",
-            backdropFilter: "blur(8px)",
           }}
         >
           <span
@@ -52,20 +52,20 @@ export const Hero: React.FC = () => {
             margin: "0 0 24px",
           }}
         >
-          <span data-rv data-rvd="1" style={{ display: "block" }}>
-            {portfolioData.headlinePre}
+          <span className="h-line">
+            {preWords.map((word, i) => (
+              <React.Fragment key={i}>
+                <span className="w" style={{ "--i": i } as React.CSSProperties}>
+                  {word}
+                </span>{" "}
+              </React.Fragment>
+            ))}
           </span>
-          <span data-rv data-rvd="2" style={{ display: "block" }}>
-            {portfolioData.headlineMain}{" "}
-            <span
-              style={{
-                color: "transparent",
-                WebkitTextStroke: "1.5px #64748B",
-                background: "linear-gradient(135deg, #4FB6FF 0%, #3DDC84 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
+          <span className="h-line">
+            <span className="w" style={{ "--i": preWords.length } as React.CSSProperties}>
+              {portfolioData.headlineMain}
+            </span>{" "}
+            <span className="w w-accent" style={{ "--i": preWords.length + 1 } as React.CSSProperties}>
               {portfolioData.headlineAccent}
             </span>
           </span>
@@ -157,7 +157,7 @@ export const Hero: React.FC = () => {
             WebkitMask:
               "radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px))",
             mask: "radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px))",
-            filter: "drop-shadow(0 0 12px rgba(79, 182, 255, 0.4))",
+            willChange: "transform",
           }}
         />
 
@@ -177,21 +177,14 @@ export const Hero: React.FC = () => {
             border: "1px solid rgba(255,255,255,0.08)",
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/assets/portrait-bw.png"
             alt={portfolioData.name}
-            onError={(e) => {
-              (e.currentTarget as HTMLElement).style.display = "none";
-            }}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "50% 8%",
-              filter: "grayscale(1) contrast(.95) brightness(.96)",
-              display: "block",
-            }}
+            fill
+            priority
+            sizes="(max-width: 640px) 300px, (max-width: 900px) 380px, 460px"
+            quality={80}
+            style={{ objectFit: "cover", objectPosition: "50% 8%" }}
           />
           <div
             aria-hidden="true"
@@ -259,6 +252,10 @@ export const Hero: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <a href="#work" className="scroll-cue" aria-label="Scroll to experience">
+        <span />
+      </a>
     </section>
   );
 };
