@@ -74,13 +74,13 @@ export const Contact: React.FC = () => {
       </p>
 
       <div data-rv data-rvd="1" style={{ display: "flex", gap: "14px", flexWrap: "wrap", alignItems: "center" }}>
-        <a href={`mailto:${portfolioData.email}`} className="btn btn-primary">
+        <a href={`mailto:${portfolioData.email}`} className="btn btn-primary magnetic">
           {portfolioData.email} &rarr;
         </a>
         <button
           type="button"
           onClick={handleCopyEmail}
-          className="btn btn-outline"
+          className="btn btn-outline magnetic"
           style={{ display: "inline-flex", gap: "8px", alignItems: "center" }}
           aria-live="polite"
         >

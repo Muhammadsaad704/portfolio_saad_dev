@@ -43,7 +43,7 @@ export const ParticleGrid: React.FC = () => {
     let heroRect = hero.getBoundingClientRect();
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const dpr = 1;
       W = hero.clientWidth;
       H = hero.clientHeight;
       canvas.width = Math.floor(W * dpr);
@@ -64,11 +64,16 @@ export const ParticleGrid: React.FC = () => {
 
     resize();
 
+    // Rebuild only once the user stops resizing, not on every resize event
     let lastW = window.innerWidth;
+    let resizeTimer: ReturnType<typeof setTimeout> | undefined;
     const onResize = () => {
-      if (window.innerWidth === lastW) return;
-      lastW = window.innerWidth;
-      resize();
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (window.innerWidth === lastW) return;
+        lastW = window.innerWidth;
+        resize();
+      }, 200);
     };
 
     const onMouseMove = (e: MouseEvent) => {
@@ -172,6 +177,7 @@ export const ParticleGrid: React.FC = () => {
 
     return () => {
       cancelAnimationFrame(animId);
+      clearTimeout(resizeTimer);
       io.disconnect();
       window.removeEventListener("resize", onResize);
       window.removeEventListener("scroll", onScroll);

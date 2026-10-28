@@ -109,6 +109,7 @@ export const ScrollReveal: React.FC = () => {
 
     // Cursor spotlight on cards: one delegated listener, only updates two CSS vars
     let spotEl: HTMLElement | null = null;
+    let magEl: HTMLElement | null = null;
     const onPointerMove = (e: PointerEvent) => {
       if (e.pointerType !== "mouse") return;
       const card = (e.target as HTMLElement).closest?.<HTMLElement>(".spot");
@@ -117,10 +118,22 @@ export const ScrollReveal: React.FC = () => {
         spotEl.style.removeProperty("--my");
       }
       spotEl = card ?? null;
-      if (!card) return;
-      const r = card.getBoundingClientRect();
-      card.style.setProperty("--mx", `${e.clientX - r.left}px`);
-      card.style.setProperty("--my", `${e.clientY - r.top}px`);
+      if (card) {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+        card.style.setProperty("--my", `${e.clientY - r.top}px`);
+      }
+
+      // Magnetic buttons drift slightly toward the cursor
+      const mag = (e.target as HTMLElement).closest?.<HTMLElement>(".magnetic");
+      if (magEl && magEl !== mag) magEl.style.transform = "";
+      magEl = mag ?? null;
+      if (mag) {
+        const r = mag.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) * 0.25;
+        const dy = (e.clientY - (r.top + r.height / 2)) * 0.35;
+        mag.style.transform = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px)`;
+      }
     };
     if (!reduced) document.addEventListener("pointermove", onPointerMove, { passive: true });
 

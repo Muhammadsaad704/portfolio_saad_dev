@@ -10,11 +10,13 @@ import { Credentials } from "@/components/Credentials";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { CursorRing } from "@/components/CursorRing";
 
 export default function Home() {
   return (
     <>
       <ScrollReveal />
+      <CursorRing />
       <div className="aurora" aria-hidden="true" />
       <Header />
       <main id="top">
