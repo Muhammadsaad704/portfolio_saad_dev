@@ -770,7 +770,8 @@ header.site nav {
     flex-direction: column;
     aspect-ratio: auto;
   }
-  .hero > div[data-rvd="2"] > div:first-child {
+  .spin-ring,
+  .portrait-glow {
     display: none;
   }
   .portrait-ring {
@@ -1509,5 +1510,70 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   .sec-head h2 {
     clip-path: none;
+  }
+}
+
+/* ---------- Phones & touch devices ---------- */
+
+/* Clip stray decorative overflow so the page can never wobble sideways
+   (overflow-x: hidden on body is not enough on iOS Safari) */
+html,
+body {
+  overflow-x: clip;
+}
+
+.hero {
+  overflow-x: clip;
+}
+
+/* Size the fixed background to the large viewport so it is not resized and
+   re-rasterized each time the mobile address bar shows or hides */
+.aurora {
+  bottom: auto;
+  height: 100vh;
+  height: 100lvh;
+}
+
+@media (hover: none), (max-width: 900px) {
+  /* A blurred fixed header re-blurs on every scroll frame; use a solid bar instead */
+  header.site {
+    background: rgba(8, 11, 16, 0.96);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  /* Full-screen fixed grain is costly to composite while touch-scrolling */
+  body::after {
+    display: none;
+  }
+
+  .portrait-glow {
+    animation: none;
+  }
+
+  .hero-glow {
+    display: none;
+  }
+}
+
+/* Compact single-line nav on phones ("hire me" already links to contact) */
+@media (max-width: 640px) {
+  .navlinks {
+    flex-wrap: nowrap;
+  }
+  .navlinks a[href="#stack"] {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .navlinks {
+    gap: 12px;
+  }
+  .navlinks .nav-link[href="#contact"] {
+    display: none;
+  }
+  .brand {
+    font-size: 16px;
   }
 }

@@ -149,6 +149,7 @@ export const Hero: React.FC = () => {
         {/* Animated Conic Ring Glow */}
         <div
           aria-hidden="true"
+          className="spin-ring"
           style={{
             position: "absolute",
             inset: "-12px",
